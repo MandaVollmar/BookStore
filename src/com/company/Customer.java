@@ -11,11 +11,16 @@ public class Customer {
     double budget;
     List<Book> boughtBooks = new ArrayList<>();
 
-    public Customer (String name, int age, boolean isMember, double budget) {
-        this.name=name;
-        this.age=age;
-        this.isMember=isMember;
-        this.budget=budget;
+    public Customer(boolean isMember, double budget) {
+        this.isMember = isMember;
+        this.budget = budget;
+    }
+
+    public Customer(String name, int age, boolean isMember, double budget) {
+        this.name = name;
+        this.age = age;
+        this.isMember = isMember;
+        this.budget = budget;
     }
 
     public void setName(String name) {
@@ -37,7 +42,8 @@ public class Customer {
     public void setIsMember(boolean isMember) {
         this.isMember = isMember;
     }
-    public boolean getIsMember(){
+
+    public boolean getIsMember() {
         return isMember;
     }
 
@@ -48,6 +54,32 @@ public class Customer {
     public double getBudget() {
         return budget;
     }
-    // When book is bought it is added to customer inventory and taken from bookstore inventory.
-    public void buyBook(){}
+
+    public boolean buyMembership() {
+        if (budget >= 10) {
+            isMember = true;
+            return true;
+
+        }else{
+            return false;
+        }
+    }
+
+    public void buyBook(Book myBook, BookStore myBookstore) {
+        if (isMember == true) {
+            if (budget >= (myBook.getCost() * (1 - myBookstore.getMemberDiscount()))) {
+                myBookstore.removeInventory(myBook);
+                boughtBooks.add(myBook);
+            } else {
+                System.out.println("Sorry not funds");
+            }
+        } else {
+            if (budget >= (myBook.getCost())) {
+                myBookstore.removeInventory(myBook);
+                boughtBooks.add(myBook);
+            } else {
+                System.out.println("Sorry not funds");
+            }
+        }
+    }
 }

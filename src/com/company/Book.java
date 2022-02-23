@@ -6,11 +6,11 @@ public class Book {
     String author;
     double cost;
 
-    public Book (String genre, String title, String author, double cost){
-        this.genre=genre;
-        this.title=title;
-        this.author=author;
-        this.cost=cost;
+    public Book(String genre, String title, String author, double cost) {
+        this.genre = genre;
+        this.title = title;
+        this.author = author;
+        this.cost = cost;
     }
 
     public void setGenre(String genre) {
